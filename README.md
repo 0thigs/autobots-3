@@ -1,5 +1,7 @@
 # API Automanager
 
+Um sistema de gerenciamento automotivo desenvolvido com Spring Boot para controle de empresas, usuários, veículos, produtos, serviços e vendas.
+
 ## 🚀 Pré-requisitos
 
 Antes de executar a aplicação, certifique-se de ter instalado:
@@ -51,7 +53,11 @@ java -jar target/automanager-0.0.1-SNAPSHOT.jar
 
 Após inicializar a aplicação, ela estará disponível em:
 - **URL Base:** `http://localhost:8080`
-- **Console H2 Database:** `http://localhost:8080/h2-console` (se habilitado)
+- **Console H2 Database:** `http://localhost:8080/h2-console`
+  - **URL JDBC:** `jdbc:h2:mem:automanagerdb`
+  - **Usuário:** `sa`
+  - **Senha:** *(vazio)*
+- **Documentação Swagger:** `http://localhost:8080/swagger-ui.html`
 
 ## 🧪 Testando os Endpoints
 
@@ -59,92 +65,136 @@ Para testar os endpoints desenvolvidos, utilize ferramentas como:
 - [Insomnia](https://insomnia.rest/)
 - [Postman](https://www.postman.com/)
 - [Thunder Client](https://www.thunderclient.com/) (extensão do VS Code)
+- Documentação interativa do Swagger (recomendado)
 
-### Exemplos de teste:
+## 📚 Documentação dos Endpoints
 
-Obs: Todos os JSONS estão na pasta <u>examples</u> dentro do projeto.
+### 🏢 Empresa Controller
 
-## 🏢 CompanyController
+**Endpoint Base:** `/empresa` e `/empresas`
 
-**Endpoint Base:** `/companies`
-
-| Método | Endpoint            | Descrição                          |
-|--------|---------------------|------------------------------------|
-| GET    | `/companies`        | Lista todas as empresas            |
-| GET    | `/companies/{id}`   | Busca uma empresa pelo ID          |
-| POST   | `/companies`        | Cria uma nova empresa              |
-| PUT    | `/companies/{id}`   | Atualiza os dados de uma empresa   |
-| DELETE | `/companies/{id}`   | Remove uma empresa pelo ID         |
-
----
-
-## 👤 UserController
-
-**Endpoint Base:** `/users`
-
-| Método | Endpoint         | Descrição                              |
-|--------|------------------|----------------------------------------|
-| GET    | `/users`         | Lista todos os usuários                |
-| GET    | `/users/{id}`    | Busca um usuário pelo ID               |
-| POST   | `/users`         | Cria um novo usuário                   |
-| PUT    | `/users/{id}`    | Atualiza os dados de um usuário        |
-| DELETE | `/users/{id}`    | Remove um usuário pelo ID              |
-
-
+| Método | Endpoint                  | Descrição                          |
+|--------|---------------------------|------------------------------------|
+| GET    | `/empresas`               | Lista todas as empresas            |
+| GET    | `/empresa/{id}`           | Busca uma empresa pelo ID          |
+| POST   | `/empresa/cadastrar`      | Cria uma nova empresa              |
+| PUT    | `/empresa/atualizar`      | Atualiza os dados de uma empresa   |
+| DELETE | `/empresa/remover`        | Remove uma empresa                 |
 
 ---
 
-## 🚗 VehicleController
+### 👤 Usuario Controller
 
-**Endpoint Base:** `/vehicles`
+**Endpoint Base:** `/usuario`
 
-| Método | Endpoint         | Descrição                              |
-|--------|------------------|----------------------------------------|
-| GET    | `/vehicles`      | Lista todos os veículos                |
-| GET    | `/vehicles/{id}` | Busca um veículo pelo ID               |
-| POST   | `/vehicles`      | Cria um novo veículo                   |
-| PUT    | `/vehicles/{id}` | Atualiza os dados de um veículo        |
-| DELETE | `/vehicles/{id}` | Remove um veículo pelo ID              |
-
----
-
-## 📦 MerchandiseController
-
-**Endpoint Base:** `/merchandises`
-
-| Método | Endpoint              | Descrição                             |
-|--------|-----------------------|---------------------------------------|
-| GET    | `/merchandises`       | Lista todos os itens de mercadoria    |
-| GET    | `/merchandises/{id}`  | Busca um item de mercadoria pelo ID   |
-| POST   | `/merchandises`       | Cria um novo item de mercadoria       |
-| PUT    | `/merchandises/{id}`  | Atualiza os dados de um item          |
-| DELETE | `/merchandises/{id}`  | Remove um item pelo ID                |
+| Método | Endpoint                    | Descrição                              |
+|--------|-----------------------------|----------------------------------------|
+| GET    | `/usuario/listar`           | Lista todos os usuários                |
+| GET    | `/usuario/{id}`             | Busca um usuário pelo ID               |
+| POST   | `/usuario/criar`            | Cria um novo usuário                   |
+| PUT    | `/usuario/atualizar/{id}`   | Atualiza os dados de um usuário        |
+| DELETE | `/usuario/excluir/{id}`     | Remove um usuário pelo ID              |
 
 ---
 
-## 🛒 SaleController
+### 🚗 Veiculo Controller
 
-**Endpoint Base:** `/sales`
+**Endpoint Base:** `/veiculo`
 
-| Método | Endpoint      | Descrição                            |
-|--------|---------------|--------------------------------------|
-| GET    | `/sales`      | Lista todas as vendas                |
-| GET    | `/sales/{id}` | Busca uma venda pelo ID              |
-| POST   | `/sales`      | Cria uma nova venda                  |
-| PUT    | `/sales/{id}` | Atualiza os dados de uma venda       |
-| DELETE | `/sales/{id}` | Remove uma venda pelo ID             |
+| Método | Endpoint                     | Descrição                              |
+|--------|------------------------------|----------------------------------------|
+| GET    | `/veiculo/listar`            | Lista todos os veículos                |
+| GET    | `/veiculo/{id}`              | Busca um veículo pelo ID               |
+| POST   | `/veiculo/criar`             | Cria um novo veículo                   |
+| PUT    | `/veiculo/atualizar/{id}`    | Atualiza os dados de um veículo        |
+| DELETE | `/veiculo/excluir/{id}`      | Remove um veículo pelo ID              |
 
 ---
 
-## 🛠️ ServiceController
+### 📦 Mercadoria Controller (Produtos)
 
-**Endpoint Base:** `/services`
+**Endpoint Base:** `/mercadoria`
 
-| Método | Endpoint         | Descrição                              |
-|--------|------------------|----------------------------------------|
-| GET    | `/services`      | Lista todos os serviços                |
-| GET    | `/services/{id}` | Busca um serviço pelo ID               |
-| POST   | `/services`      | Cria um novo serviço                   |
-| PUT    | `/services/{id}` | Atualiza os dados de um serviço        |
-| DELETE | `/services/{id}` | Remove um serviço pelo ID              |
+| Método | Endpoint                      | Descrição                             |
+|--------|-------------------------------|---------------------------------------|
+| GET    | `/mercadoria/listar`          | Lista todos os produtos               |
+| GET    | `/mercadoria/{id}`            | Busca um produto pelo ID              |
+| POST   | `/mercadoria/cadastrar`       | Cria um novo produto                  |
+| PUT    | `/mercadoria/atualizar/{id}`  | Atualiza os dados de um produto       |
+| DELETE | `/mercadoria/remover/{id}`    | Remove um produto pelo ID             |
+
+---
+
+### 🛒 Venda Controller
+
+**Endpoint Base:** `/venda`
+
+| Método | Endpoint                  | Descrição                            |
+|--------|---------------------------|--------------------------------------|
+| GET    | `/venda/listar`           | Lista todas as vendas                |
+| GET    | `/venda/{id}`             | Busca uma venda pelo ID              |
+| POST   | `/venda/criar`            | Cria uma nova venda                  |
+| PUT    | `/venda/atualizar/{id}`   | Atualiza os dados de uma venda       |
+| DELETE | `/venda/{id}`             | Remove uma venda pelo ID             |
+
+---
+
+### 🛠️ Servico Controller
+
+**Endpoint Base:** `/servico`
+
+| Método | Endpoint                   | Descrição                              |
+|--------|----------------------------|----------------------------------------|
+| GET    | `/servico/listar`          | Lista todos os serviços                |
+| GET    | `/servico/{id}`            | Busca um serviço pelo ID               |
+| POST   | `/servico/criar`           | Cria um novo serviço                   |
+| PUT    | `/servico/atualizar/{id}`  | Atualiza os dados de um serviço        |
+| DELETE | `/servico/excluir/{id}`    | Remove um serviço pelo ID              |
+
+## 🗄️ Banco de Dados
+
+O projeto utiliza:
+- **H2 Database** (em memória) para desenvolvimento e testes
+- **MySQL** (configuração disponível no pom.xml)
+- **JPA/Hibernate** para mapeamento objeto-relacional
+
+### Configuração do H2
+```properties
+spring.datasource.url=jdbc:h2:mem:automanagerdb
+spring.datasource.driverClassName=org.h2.Driver
+spring.datasource.username=sa
+spring.datasource.password=
+spring.jpa.database-platform=org.hibernate.dialect.H2Dialect
+spring.jpa.hibernate.ddl-auto=update
+spring.h2.console.enabled=true
+```
+
+## 🏗️ Arquitetura do Projeto
+
+```
+src/main/java/com/autobots/automanager/
+├── controles/          # Controllers REST
+├── entidades/          # Entidades JPA
+├── enumeracoes/        # Enums do sistema
+├── repositorios/       # Repositórios JPA
+└── servicos/           # Serviços de negócio
+```
+
+## 🔗 Tecnologias Utilizadas
+
+- **Spring Boot 2.6.7**
+- **Spring Data JPA**
+- **Spring HATEOAS** (para links de navegação)
+- **H2 Database** (desenvolvimento)
+- **MySQL Connector** (produção)
+- **Lombok** (redução de código boilerplate)
+- **SpringDoc OpenAPI** (documentação Swagger)
+- **Jackson** (serialização JSON)
+
+## 📝 Observações Importantes
+
+1. **Relacionamentos:** Todos os recursos (usuários, veículos, produtos, serviços, vendas) estão vinculados a uma empresa
+2. **HATEOAS:** A API implementa HATEOAS para navegação entre recursos
+3. **Validações:** Empresa é obrigatória para criação de novos recursos
+4. **Banco em Memória:** Dados são perdidos ao reiniciar a aplicação (H2 em memória)
 

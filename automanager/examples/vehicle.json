@@ -1,9 +1,0 @@
-{
-  "plate": "XYZ-1234",
-  "model": "Civic",
-  "brand": "Honda",
-  "year": 2020,
-  "owner": {
-    "id": 1
-  }
-}
